@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kaspersky | False Security | 728x90</title>
+<link rel='stylesheet' href='https://cdn-akamai.mookie1.com/kaspersky/fonts/sans500.css'>
+<link rel='stylesheet' href='https://cdn-akamai.mookie1.com/kaspersky/fonts/sans500italic.css'>
+<link rel='stylesheet' href='https://cdn-akamai.mookie1.com/kaspersky/fonts/sans900.css'>
+<style>
+div {
+	position:absolute;
+}
+#container {
+	width:728px;
+	height:90px;
+	left:0;
+	top:0;
+	border:thin #666 solid;
+	color:#006d5c;
+    font-family: 'museo_sans900';
+	vertical-align: middle;
+	text-align: center;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    cursor: pointer;
+    user-select:none;
+    -webkit-user-select:none;
+    box-sizing:border-box;
+}
+
+.text1 {
+	opacity:0;
+	left:75px;
+	top:15px;
+	width:450px;
+	height:57px;
+	transition:all 1s;
+	-webkit-transition:all 1s;
+}
+	.text1.anim {
+		opacity:1;
+	}
+
+.text2 {
+	opacity:1;
+	left:50px;
+	top:15px;
+	width:280px;
+	height:57px;
+}	
+
+.bkg2 {
+	opacity:0;
+	width:145px;
+	height:auto;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	transition-delay:4s;
+	-webkit-transition-delay:4s;
+}
+	.bkg2.anim {
+		opacity:1;
+	}
+.text3 {
+	left:50px;
+	width:500px;
+	top:15px;
+	height:29px;
+}
+
+.text4 {
+	left:100px;
+	width:400px;
+	top:50px;
+	height:29px;
+	color:#464647;
+	font-family: 'museo_sans500_italic';
+
+}
+.bkg3 {
+	opacity:0;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	transition-delay:8s;
+	-webkit-transition-delay:8s;
+}	.bkg3.anim {
+	opacity:1;
+}
+
+.text5 {
+	top:10px;
+	width:390px;
+	left:-300px;
+	height:60px;
+	text-align: left;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+/*	transition-delay:12s;
+	-webkit-transition-delay:12s;*/
+}
+	.text5.anim {
+		left:20px;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		transition-delay:11s;
+		-webkit-transition-delay:11s;
+	}
+.cta {
+	bottom:50px;
+	right:-150px;
+	width:140px;
+	height:37px;
+	background-color:#FF0000;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	transition-delay:11s;
+	-webkit-transition-delay:11s;
+}
+	.cta.anim {
+		right:9px;
+	}
+.text6 {
+	width:118px;
+	height:30px;
+	color:#fff;
+	padding: 0 10px;
+	font-family: 'museo_sans500';
+	font-size:15px;
+	text-align: center;
+	margin:auto;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+}
+.product {
+	bottom:-30px;
+	right:200px;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	transition-delay:11s;
+	-webkit-transition-delay:11s;
+}
+.product img{
+	width:55px;
+	height:auto;
+}
+	.product.anim {
+		bottom:5px;
+	}
+.bkg4 {
+	opacity:0;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	transition-delay:11s;
+	-webkit-transition-delay:11s;
+}
+.bkg4.anim {
+	opacity:1;
+}
+
+
+</style>
+</head>
+
+<body>
+<div id="container">
+	<!--Scene1-->
+	<div class="bkg1"><img src="bkg1.jpg"></div>
+		<div class="text1"></div>
+	
+	<!--Scene2-->
+	<div class="bkg2">
+		<img src="bkg2.jpg">
+		<div class="text2"></div>
+	</div>
+	
+	<!--Scene3-->
+	<div class="bkg3">
+		<img src="bkg1.jpg">
+		<div class="text3"></div>
+		<div class="text4"></div>
+	</div>
+	
+	<!--Scene4-->
+	<div class="bkg4">
+		<img src="bkg1.jpg">
+		<div class="text5"></div>
+		<div class="product"><img src="product.jpg"></div>
+		<div class="cta">
+			<div class="text6"></div>
+		</div>
+	</div>
+</div>
+
+<script src='vars.js'></script>
+<script>
+	(function(root,factory){"use strict";if(typeof define==="function"&&define.amd){define([],factory)}else if(typeof exports==="object"){module.exports=factory()}else{root.textFit=factory()}})(typeof global==="object"?global:this,function(){"use strict";var defaultSettings={alignVert:false,alignHoriz:false,multiLine:false,detectMultiLine:true,minFontSize:6,maxFontSize:80,reProcess:true,widthOnly:false};return function textFit(els,options){if(!options)options={};var settings={};for(var key in defaultSettings){if(options.hasOwnProperty(key)){settings[key]=options[key]}else{settings[key]=defaultSettings[key]}}if(typeof els.toArray==="function"){els=els.toArray()}var elType=Object.prototype.toString.call(els);if(elType!=="[object Array]"&&elType!=="[object NodeList]"){els=[els]}for(var i=0;i<els.length;i++){processItem(els[i],settings)}};function processItem(el,settings){if(!isElement(el)||!settings.reProcess&&el.getAttribute("textFitted")){return false}if(!settings.reProcess){el.setAttribute("textFitted",1)}var innerSpan,originalHeight,originalHTML,originalWidth;var low,mid,high;originalHTML=el.innerHTML;originalWidth=innerWidth(el);originalHeight=innerHeight(el);if(!originalWidth||!settings.widthOnly&&!originalHeight){if(!settings.widthOnly)throw new Error("Set a static height and width on the target element "+el.outerHTML+" before using textFit!");else throw new Error("Set a static width on the target element "+el.outerHTML+" before using textFit!")}if(originalHTML.indexOf("textFitted")===-1){innerSpan=document.createElement("span");innerSpan.className="textFitted";innerSpan.style["display"]="inline-block";innerSpan.innerHTML=originalHTML;el.innerHTML="";el.appendChild(innerSpan)}else{innerSpan=el.querySelector("span.textFitted");if(hasClass(innerSpan,"textFitAlignVert")){innerSpan.className=innerSpan.className.replace("textFitAlignVert","");innerSpan.style["height"]=""}}if(settings.alignHoriz){el.style["text-align"]="center";innerSpan.style["text-align"]="center"}var multiLine=settings.multiLine;if(settings.detectMultiLine&&!multiLine&&innerSpan.scrollHeight>=parseInt(window.getComputedStyle(innerSpan)["font-size"],10)*2){multiLine=true}if(!multiLine){el.style["white-space"]="nowrap"}low=settings.minFontSize+1;high=settings.maxFontSize+1;while(low<=high){mid=parseInt((low+high)/2,10);innerSpan.style.fontSize=mid+"px";if(innerSpan.scrollWidth<=originalWidth&&(settings.widthOnly||innerSpan.scrollHeight<=originalHeight)){low=mid+1}else{high=mid-1}}innerSpan.style.fontSize=mid-1+"px";if(settings.alignVert){addStyleSheet();var height=innerSpan.scrollHeight;if(window.getComputedStyle(el)["position"]==="static"){el.style["position"]="relative"}if(!hasClass(innerSpan,"textFitAlignVert")){innerSpan.className=innerSpan.className+" textFitAlignVert"}innerSpan.style["height"]=height+"px"}}function innerHeight(el){var style=window.getComputedStyle(el,null);return el.clientHeight-parseInt(style.getPropertyValue("padding-top"),10)-parseInt(style.getPropertyValue("padding-bottom"),10)}function innerWidth(el){var style=window.getComputedStyle(el,null);return el.clientWidth-parseInt(style.getPropertyValue("padding-left"),10)-parseInt(style.getPropertyValue("padding-right"),10)}function isElement(o){return typeof HTMLElement==="object"?o instanceof HTMLElement:o&&typeof o==="object"&&o!==null&&o.nodeType===1&&typeof o.nodeName==="string"}function hasClass(element,cls){return(" "+element.className+" ").indexOf(" "+cls+" ")>-1}function addStyleSheet(){if(document.getElementById("textFitStyleSheet"))return;var style=[".textFitAlignVert{","position: absolute;","top: 0; right: 0; bottom: 0; left: 0;","margin: auto;","}"].join("");var css=document.createElement("style");css.type="text/css";css.id="textFitStyleSheet";css.innerHTML=style;document.body.appendChild(css)}});
+</script>
+<script>
+	var text1 = document.getElementsByClassName("text1")[0];
+	var text2 = document.getElementsByClassName("text2")[0];
+	var text3 = document.getElementsByClassName("text3")[0];
+	var text4 = document.getElementsByClassName("text4")[0];
+	var text5 = document.getElementsByClassName("text5")[0];
+	var text6 = document.getElementsByClassName("text6")[0];
+	var cta = document.getElementsByClassName("cta")[0];
+	var product = document.getElementsByClassName("product")[0];
+	var bkg2 = document.getElementsByClassName("bkg2")[0];
+	var bkg3 = document.getElementsByClassName("bkg3")[0];
+	var bkg4 = document.getElementsByClassName("bkg4")[0];
+
+		text1.innerHTML = txt1;
+		text2.innerHTML = txt2;
+		text3.innerHTML = txt3;
+		// Find height of Text 3
+		var text3style = window.getComputedStyle(text3);
+		// Add  extra px height to the top of text4 container to avoid overlapping.
+		text4.style.top = parseInt(text3style.top) + parseInt(text3style.height) + 5 + "px";
+		text4.innerHTML = '"'+txt4+'"';
+		text5.innerHTML = txt5;
+		text6.innerHTML = txt6;
+
+	setTimeout(function(){
+		text1.className +=" anim";
+		text5.className +=" anim";
+		cta.className +=" anim";
+		product.className +=" anim";
+		bkg2.className +=" anim";
+		bkg3.className +=" anim";
+		bkg4.className +=" anim";
+	},10);
+
+	textFit(text1,{
+		multiLine:true,
+		detectMultiLine: true
+	});
+	textFit(text2,{
+		multiLine:true,
+		detectMultiLine: true
+	});
+	textFit(text3,{
+		multiLine:true,
+		detectMultiLine: true
+	});
+	textFit(text4,{
+		multiLine:true,
+		detectMultiLine: true
+	});
+	textFit(text5,{
+		multiLine:true,
+		detectMultiLine: true
+	});
+	textFit(text6,{
+		multiLine:true,
+		alignVert:true,
+		detectMultiLine: true
+	});
+</script>
+
+</body>
+
+</html>
