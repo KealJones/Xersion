@@ -2,30 +2,30 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 echo "<pre>";
-$languagePath          = "./languageCsvs/";
-$sourceAdsPath         = "./sourceAds/";
-$generatedVersionsPath = "./generatedVersions/";
+$versionPath          = "./variables/";
+$sourceAdsPath         = "./source/";
+$generatedVersionsPath = "./generated/";
 
-//Read All Languages into arrays
-@$languageFiles = array_splice(scandir($languagePath), 2);
+//Read All Versions into arrays
+@$versionFiles = array_splice(scandir($versionPath), 2);
 @$sourceFiles = array_splice(scandir($sourceAdsPath), 2);
 
-//Run Through All Language Files and Create Array For Referance
-foreach ($languageFiles as $currentLanguageFile) {
-    $LanguageAdName       = str_replace(".csv", "", $currentLanguageFile);
-    $currentLanguageArray = csv_to_array($languagePath . $currentLanguageFile);
-    print_r($currentLanguageArray);
-    foreach ($currentLanguageArray as $AdLanguage) {
-        $currentLang                             = $AdLanguage['Language'];
-        //unset($AdLanguage['Language']);
-        $language[$LanguageAdName][$currentLang] = array();
-        $language[$LanguageAdName][$currentLang] = $AdLanguage;
+//Run Through All Version Files and Create Array For Referance
+foreach ($versionFiles as $currentVersionFile) {
+    $VersionAdName       = str_replace(".csv", "", $currentVersionFile);
+    $currentVersionArray = csv_to_array($versionPath . $currentVersionFile);
+    print_r($currentVersionArray);
+    foreach ($currentVersionArray as $AdVersion) {
+        $currentLang                             = $AdVersion['Version'];
+        //unset($AdVersion['Version']);
+        $version[$VersionAdName][$currentLang] = array();
+        $version[$VersionAdName][$currentLang] = $AdVersion;
     }
 }
 
 foreach ($sourceFiles as $sourceAdName) {
-    foreach ($language[$sourceAdName] as $currentLanagueVersion => $currentLanguageVars) {
-        //Create Directory for Current Language
+    foreach ($version[$sourceAdName] as $currentLanagueVersion => $currentVersionVars) {
+        //Create Directory for Current Version
         @mkdir($generatedVersionsPath . $currentLanagueVersion);
         
         @$sourceAdFiles = array_splice(scandir($sourceAdsPath . "/" . $sourceAdName), 2);
@@ -40,7 +40,7 @@ foreach ($sourceFiles as $sourceAdName) {
         }
         
         foreach ($sourceAdFiles as $sourceAdSize) {
-            //Generate and Create Path to current ad/language version
+            //Generate and Create Path to current ad/version version
             $currentAdCreationPath = $generatedVersionsPath . $currentLanagueVersion . "/" . $sourceAdName;
             @mkdir($currentAdCreationPath);
             $currentAdCreationPath = $generatedVersionsPath . $currentLanagueVersion . "/" . $sourceAdName . "/" . $sourceAdSize . "/";
@@ -48,7 +48,7 @@ foreach ($sourceFiles as $sourceAdName) {
             //Copy Source ad Files to New Lanugage Directory
             recurse_copy($sourceAdsPath . $sourceAdName . "/" . $sourceAdSize . "/", $currentAdCreationPath);
             $varFile = '';
-            foreach ($currentLanguageVars as $varName => $varValue) {
+            foreach ($currentVersionVars as $varName => $varValue) {
                 
                 if ($varName == "clickTag") {
                     //Lets do something else for clickTag
