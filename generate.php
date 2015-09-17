@@ -1,11 +1,20 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
-echo "<pre>";
 $versionPath           = "./variables/";
 $sourceAdsPath         = "./source/";
 $generatedVersionsPath = "./generated/";
-
+if (!isCLI()){
+$url = $_SERVER['REQUEST_URI']; //returns the current URL
+$parts = explode('/',$url);
+$dir = $_SERVER['SERVER_NAME'];
+for ($i = 0; $i < count($parts) - 1; $i++) {
+ $dir .= $parts[$i] . "/";
+}
+$url = "http://".$dir;
+} else {
+    $url = '';
+}
 
 @mkdir($generatedVersionsPath);
 @mkdir($sourceAdsPath);
@@ -29,10 +38,11 @@ foreach ($versionFiles as $currentVersionFile) {
 
 foreach ($sourceFiles as $sourceAdName) {
     foreach ($version[$sourceAdName] as $currentVersionName => $currentVersionVars) {
+        echo "Ad: ".$sourceAdName .  " | Version:" . $currentVersionName . " - Started\n<br>";
         //Create Directory for Current Version
-        echo $currentVersionName . " Done.<br>";
         @mkdir($generatedVersionsPath . $sourceAdName);
         @$sourceAdFiles = array_splice(scandir($sourceAdsPath . "/" . $sourceAdName), 2);
+        //Remove Gross Files that we dont want
         if (($key = array_search("banner.jpg", $sourceAdFiles)) !== false) {
             unset($sourceAdFiles[$key]);
         }
@@ -67,11 +77,18 @@ foreach ($sourceFiles as $sourceAdName) {
             file_put_contents($currentAdCreationPath . "/vars.js", $varFile);
             @mkdir($generatedVersionsPath . $sourceAdName . "/zips");
             zip_directory($sourceAdName . "-" . $currentVersionName . "-" . $sourceAdSize, $currentAdCreationPath, $generatedVersionsPath . $sourceAdName . "/zips");
+            if (!isCLI()){
+            echo $sourceAdSize." Link: <a target='_blank' href='".$url.str_replace("./","",$currentAdCreationPath)."'>".$url.str_replace("./","",$currentAdCreationPath)."</a><br>";
+            } 
         }
+        echo "Finished.<br><br>\n\n";
+        //Let screen know what was finished.
+        
+        
     }
 }
 
-echo "Complete.";
+echo "Finished.\n";
 
 /* UTILITIE FUNCTIONS !!!!DO NOT CHANGE!!!! */
 function recurse_copy($src, $dst)
@@ -108,6 +125,11 @@ function csv_to_array($filename = '', $delimiter = ',')
         fclose($handle);
     }
     return $data;
+}
+
+function isCLI()
+{
+    return (php_sapi_name() === 'cli');
 }
 
 function zip_directory($zipName, $path, $dest)
