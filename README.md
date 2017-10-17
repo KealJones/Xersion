@@ -30,3 +30,10 @@ If you add in a variable/column called "clickTag" it acts a bit differently, in 
 This folder holds all the results after running: generate.php
 It will be every fileset sorted by Version in folders.
 Each Version folder will have have the unzipped folders for each version and a zipped version.
+
+## Usage
+
+Open your CLI to the xersion directory and run:
+```bash
+php generate.php
+```
